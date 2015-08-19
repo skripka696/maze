@@ -1,0 +1,20 @@
+{% extends 'map/base.html' %}
+{% block title %}Django !{% endblock %}
+{% block content %}
+
+{% load mptt_tags %}
+
+<ul class="root">
+    {% recursetree nodes %}
+        <li>
+            <a href="{{node.url}}">{{ node.url }}</a>
+            {% if not node.is_leaf_node %}
+                <ul class="children">
+                    {{ children }}
+                </ul>
+            {% endif %}
+        </li>
+    {% endrecursetree %}
+</ul>
+
+{% endblock %}
